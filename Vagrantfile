@@ -211,10 +211,12 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
         # ДОБАВЛЕНИЕ ПЕРСОНАЛЬНЫХ ПАРАМЕТРОВ ВИРТУАЛЬНЫХ МАШИН ПОСЛЕ ГЛАВНОГО ЦИКЛА ЕСЛИ ТРЕБУЕТСЯ
         if configvms["name"] == "gitlab-runners"
           # ТРИГГЕРЫ:
-          vm.vm.synced_folder configvms["host_folder"] , configvms["guest_folder"]
+
           # ПРОБРОС ПОРТОВ:
           #   ...
           # СИНХРОНИЗАЦИЯ ФАЙЛОВ ПРОЕКТА:
+          #на хостовой системе хранится файлик с ответами при регистрации раннера, который надо править перед запуском
+          vm.vm.synced_folder configvms["host_folder"] , configvms["guest_folder"]
           #   ...
           # ДОПОЛНИТЕЛЬНАЯ КОНФИГУРАЦИЯ ВИРТУАЛЬНОЙ МАШИНЫ С ПОМОЩЬЮ SHELL
           # при первой загрузке
