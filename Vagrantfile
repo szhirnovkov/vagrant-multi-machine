@@ -251,7 +251,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
   
   # КОНФИГУРАЦИЯ ВИРТУАЛЬНОЙ МАШИНЫ С ПОМОЩЬЮ SHELL:
   #   для каждой из вирутальных машин при первой инициализации запустить скрипт provision.sh
-  #config.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision.sh",
-    #env: {
-   # }
+  config.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision.sh",
+   env: {
+    }
 end
