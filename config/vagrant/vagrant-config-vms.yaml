@@ -1,0 +1,117 @@
+---
+# ОБЯЗАТЕЛЬНЫЕ ПЕРЕМЕННЫЕ ДЛЯ КАЖДОЙ ИЗ ВИРТУЛЬНЫХ МАШИН:
+#   setup                 - доступные переменные: true, false
+#   name                  - name (имя виртуальной машины)
+#   box                   - образ системы
+#   box_check_update      - проверка репозитория на наличие обновлений
+#   username: devops      - имя пользователя
+#   password: devops      - пароль пользователя
+#   keys_only: false      - можно подключаться по паролю
+#   insert_key: false     - отменить создание ssh-ключа
+#   port_guest            - для проброса портов: номер порта на гостевой машине
+#   port_host             - для проброса портов: номер порта на хостовой машине
+#   ip_private            - ip-адрес в создаваемой host only сети
+#   ip_public             - ip-адрес в создаваемой bridge сети
+#   ip_bridge             - название сетевой карты для bridge сети
+#   host_folder           - для проброса директорий: название директории на хостовой машине. Надо создавать самому
+#   guest_folder          - для проброса директорий: название директории на гостевой машине. vagrant сам создаст
+# ДОПОЛНИТЕЛЬНЫЕ ПЕРЕМЕННЫЕ:
+#   memory                - объем оперативной памяти, по умолчанию, если не указано, выделяется 1024Mb
+#   cpu                   - количество ядер процессора, по умолчанию, если не указано, выделяется одно
+#   owner                 - владелец проброшенной директории. Если не указано, то по умолчанию vagrant
+#   group                 - группа владельца проброшенной директории. Если не указано, то по умолчанию vagrant
+#   mysql_dbname          - основная база данных сервера разработки приложений
+#   image                 - для VMs gitlab-runners для регистрации раннера типа doker
+#   url                   - для VMs gitlab-runners для регистрации раннера типа doker
+#   token                 - для VMs gitlab-runners для регистрации раннера типа doker
+#   path                  - для VMs gitlab-runners для регистрации раннера типа shell
+VMs:
+  -
+    #обязательные переменные:
+    setup: true
+    name: "gitlab-runners"
+    box: "your_desire_image"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    path: "config/vagrant/provision/register-shell-runners.sh"
+    image: "alpine:latest"
+    url: "https://gitlab.com/"
+    token: "GR1348941H2X5pcEFC6Zjhrnrz_Vz"
+    ip_public: 192.168.3.50
+    ip_bridge: enp3s0
+    host_folder: "data-gitlab-runners"
+    guest_folder: "/vagrant-data"
+    #   дополнительные переменные:
+    #   ...
+  -
+    # СЕРВЕР РАЗРАБОТКИ ПРИЛОЖЕНИЙ
+    #   обязательные перменные:
+    setup: false
+    name: "dev"
+    box: "your_desire_image"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    port_guest: 80
+    port_host: 8093
+    ip_private: 192.168.56.3
+    host_folder: "www/vm-dev/"
+    guest_folder: "/var/www"
+    #   дополнительные переменные:
+    #   ...
+    VirtualHost:
+      -
+        ServerAdmin: "webmaster@localhost"
+        ServerName: "drupal.local"
+        ServerAlias: "www.drupal.local"
+        DocumentRoot: "/var/www/drupal.local"
+      -
+        ServerAdmin: "webmaster@localhost"
+        ServerName: "wordpress.local"
+        ServerAlias: "www.wordpress.local"
+        DocumentRoot: "/var/www/wordpress.local"
+  -
+    # MySQL СЕРВЕР БАЗ ДАННЫХ
+    #   обязательные переменные:
+    setup: false
+    name: "mysql"
+    box: "your_desire_image"
+    box_check_update: false
+    username: Administrator
+    password: p@ssw0rd
+    keys_only: false
+    insert_key: false
+    port_guest: 80
+    port_host: 8094
+    ip_private: 192.168.56.2
+    owner: "www-data"
+    group: "www-data"
+    host_folder: "www/vm-mysql/"
+    guest_folder: "/var/www/html"
+    #   дополнительные переменные:
+    mysql_guest: 3306
+    mysql_host: 3306
+    mysql_dbhost: localhost
+    mysql_dbname: che 
+    mysql_dbuser: root
+    mysql_dbpasswd: password
+    mysql_data_dir: "data/mysql/"
+    mysql_database:
+      -
+        dbname: drupal
+        dbuser: drupal
+        dbpwd: drupal
+      - 
+        dbname: wordpress
+        dbuser: wordpress
+        dbpwd: wordpress
+      - 
+        dbname: devops
+        dbuser: devops
+        dbpwd: devops
+    memory: 2048
