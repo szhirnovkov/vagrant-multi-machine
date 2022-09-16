@@ -1,4 +1,4 @@
-0. download and install vbox and vagrant
+0. download and install virtual box and vagrant
 
 1. download box you need from https://app.vagrantup.com/bento/boxes/ubuntu-18.04 (for example)
 
