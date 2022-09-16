@@ -1,3 +1,4 @@
+This project you can use to install full configured VMs (in this case MySQL server with phpadmin and 2 git-lab runners: one type - shell, another - docker)
 0. download and install virtual box and vagrant
 
 1. download box you need from https://app.vagrantup.com/bento/boxes/ubuntu-18.04 (for example)
