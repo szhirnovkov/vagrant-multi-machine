@@ -76,7 +76,7 @@ VMs:
   -
     # MySQL СЕРВЕР БАЗ ДАННЫХ
     #   обязательные переменные:
-    setup: false
+    setup: true
     name: "mysql"
     box: "your_desire_image"
     box_check_update: false
