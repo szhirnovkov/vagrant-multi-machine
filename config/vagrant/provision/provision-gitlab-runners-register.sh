@@ -1,5 +1,5 @@
 echo -e "\e[34m Gitlab runner registration - type shell \e[0m"
-gitlab-runner register < $PATH_ANSWERS
+gitlab-runner register < /vagrant-data/register-shell-runners
 
 echo -e "\e[34m Gitlab runner registration - type docker \e[0m"
     docker run -d --name gitlab-runner --restart always \

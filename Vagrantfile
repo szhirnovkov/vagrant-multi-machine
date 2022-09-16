@@ -203,7 +203,6 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
             vm.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision-gitlab-runners-register.sh",
         # также передаем переменные окружения
               env: {
-                "PATH_ANSWERS"  => "#{configvms["path"]}",
                 "IMAGE"         => "#{configvms["image"]}",
                 "URL"           => "#{configvms["url"]}",
                 "TOKEN"         => "#{configvms["token"]}",
@@ -212,7 +211,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
         # ДОБАВЛЕНИЕ ПЕРСОНАЛЬНЫХ ПАРАМЕТРОВ ВИРТУАЛЬНЫХ МАШИН ПОСЛЕ ГЛАВНОГО ЦИКЛА ЕСЛИ ТРЕБУЕТСЯ
         if configvms["name"] == "gitlab-runners"
           # ТРИГГЕРЫ:
-          #   ...
+          vm.vm.synced_folder configvms["host_folder"] , configvms["guest_folder"]
           # ПРОБРОС ПОРТОВ:
           #   ...
           # СИНХРОНИЗАЦИЯ ФАЙЛОВ ПРОЕКТА:
@@ -250,7 +249,7 @@ Vagrant.configure("#{configglobal["GLOBAL"]["api_version"]}") do |config|
   
   # КОНФИГУРАЦИЯ ВИРТУАЛЬНОЙ МАШИНЫ С ПОМОЩЬЮ SHELL:
   #   для каждой из вирутальных машин при первой инициализации запустить скрипт provision.sh
-  config.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision.sh",
-    env: {
-    }
+  #config.vm.provision "shell", path: "#{current_dir}/config/vagrant/provision/provision.sh",
+    #env: {
+   # }
 end

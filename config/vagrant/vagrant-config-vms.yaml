@@ -24,7 +24,6 @@
 #   image                 - для VMs gitlab-runners для регистрации раннера типа doker
 #   url                   - для VMs gitlab-runners для регистрации раннера типа doker
 #   token                 - для VMs gitlab-runners для регистрации раннера типа doker
-#   path                  - для VMs gitlab-runners для регистрации раннера типа shell
 VMs:
   -
     #обязательные переменные:
@@ -36,10 +35,9 @@ VMs:
     password: p@ssw0rd
     keys_only: false
     insert_key: false
-    path: "config/vagrant/provision/register-shell-runners.sh"
     image: "alpine:latest"
     url: "https://gitlab.com/"
-    token: "GR1348941H2X5pcEFC6Zjhrnrz_Vz"
+    token: "GR1348941nNMGx-oSKPwrGUPPiyY1"
     ip_public: 192.168.3.50
     ip_bridge: enp3s0
     host_folder: "data-gitlab-runners"
