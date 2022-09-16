@@ -46,6 +46,7 @@ If it exists, Vagrant in cycle will read data and add automatically virtual host
 ## Using VMs ##
 
 - gitlab-runners
+
   vagrant ssh gitlub-runners
 
 - MySQL server
