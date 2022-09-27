@@ -8,12 +8,12 @@ This project you can use to install full configured VMs (in this case MySQL serv
 
 3. then you should create directory named from downloaded box name in .vagrant.d/boxes/ directory
 
-4. copy or move download box image in .vagrant.d/boxes/downloaded-box-name/
+4. copy or move download box image in .vagrant.d/boxes/downloaded-box-name/ and you should extract box in this directory
 
 5. create directory for working with vagrant and move in it
 
 6. use command to add download images in vagrant base:
-vagrant box add --name ubuntu18.04 /home/sergey/.vagrant.d/boxes/cf00babe-4123-4902-ad3a-c98f80de0e30/cf00babe-4123-4902-ad3a-c98f80de0e30.box
+vagrant box add --name ubuntu18.04 /home/sergey/.vagrant.d/boxes/cf00babe-4123-4902-ad3a-c98f80de0e30/extracted_name
 
 7. you can list added boxes: vagrant box list
 
